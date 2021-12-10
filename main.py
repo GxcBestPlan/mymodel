@@ -159,7 +159,7 @@ elif opt.model_type == 'mymodel':
 elif opt.model_type == 'srcnn':
     model = srcnn()
 elif opt.model_type == 'edsr':
-    model = edsr()
+    model = edsr(scale_factor=opt.upscale_factor)
 else:
     model = DBPN(num_channels=3, base_filter=64,  feat=256, num_stages=7, scale_factor=opt.upscale_factor)
     
@@ -206,3 +206,5 @@ for epoch in range(opt.start_iter, opt.nEpochs + 1):
 
     if epoch == opt.nEpochs:
         checkpoint(epoch)
+    # if epoch == 1:
+    #     checkpoint(epoch)
