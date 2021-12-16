@@ -57,7 +57,7 @@ class Net(nn.Module):
                 nn.Conv2d(in_channels=256, out_channels=256 * 4, kernel_size=3, stride=1, padding=1, bias=False),
                 nn.PixelShuffle(2),
             )
-            
+
         # self.upscale2x = nn.Sequential(
         #     nn.Conv2d(in_channels=256, out_channels=256 * 4, kernel_size=3, stride=1, padding=1, bias=False),
         #     nn.PixelShuffle(2),

@@ -28,7 +28,7 @@ parser.add_argument('--testBatchSize', type=int, default=1, help='testing batch 
 parser.add_argument('--gpu_mode', type=bool, default=True)
 parser.add_argument('--self_ensemble', type=bool, default=False)
 parser.add_argument('--chop_forward', type=bool, default=False)
-parser.add_argument('--threads', type=int, default=1, help='number of threads for data loader to use')
+parser.add_argument('--threads', type=int, default=0, help='number of threads for data loader to use')
 parser.add_argument('--seed', type=int, default=123, help='random seed to use. Default=123')
 parser.add_argument('--gpus', default=1, type=int, help='number of gpu')
 parser.add_argument('--input_dir', type=str, default='Input')
@@ -65,7 +65,7 @@ elif opt.model_type == 'mymodel':
 elif opt.model_type == 'srcnn':
     model = srcnn()
 elif opt.model_type == 'edsr':
-    model = edsr()
+    model = edsr(scale_factor=opt.upscale_factor)
 else:
     model = DBPN(num_channels=3, base_filter=64,  feat = 256, num_stages=7, scale_factor=opt.upscale_factor) ###D-DBPN
     
@@ -208,7 +208,9 @@ def chop_forward(x, model, scale, shave=8, min_size=80000, nGPUs=opt.gpus):
 
     return output
 
+#
+# #  Eval Start!!!!
+# if __name__ == '__main__':
+#     eval()
 
-#  Eval Start!!!!
-if __name__ == '__main__':
-    eval()
+eval()
